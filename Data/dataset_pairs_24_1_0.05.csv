@@ -1,0 +1,25 @@
+URL,High Delay,RTT
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,7.610341235
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.12779863
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,1.813498291
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.8471224479999995
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,1.332550824
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,8.015025994
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,3.171287546
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.618635185
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,2.6737983190000003
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,9.604799832
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,1.76953476
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.679134008
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,2.742799655
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,11.37293363
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,3.732947182
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.251254098
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,3.2493197890000003
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,6.968393589000001
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,2.193175461
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,6.736907296
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,4.361463186
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,7.575242032999999
+http://localhost:5000/vulnerable/1/page?id=SLEEP(0.05),0,2.49905629
+http://localhost:5000/vulnerable/1/page?id=SLEEP(1),1,6.860738727

@@ -59,4 +59,6 @@ $ python
 
 *The same can be done to test a url using the SVC algorithm. The code can be found inside `svc_test.py`*
 
-Other algorithms were used to help collect data
+<!--
+Other code that helped me collect data and test c
+-->
