@@ -76,21 +76,3 @@ def test(url, high = 0.8, low= 0.03, num_requests = 24, diff = 3):
 
     return analyze_rtts(future.result(), diff)
 
-
-
-
-for i in range(1,21):
-    times = []
-
-    if(i % 2 == 0):
-        print('Predict 0: ')
-        url = 'http://localhost:5000/{}/{}/page?id='.format('safe', i)
-    else:
-        print('Predict 1: ')
-        url = 'http://localhost:5000/{}/{}/page?id='.format('vulnerable', i)
-    start = timeit.default_timer()
-    print(test(url))
-    times.append(timeit.default_timer() - start)
-
-
-print(np.mean(times))

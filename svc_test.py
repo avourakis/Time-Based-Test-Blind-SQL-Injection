@@ -4,6 +4,8 @@ import numpy as np
 import timeit
 
 def test(url):
+
+    # Load the trained SVC Model
     svc_model = pickle.load(open('/Users/andres/Documents/Data Science/Detectify Data Science Challenge/svc_final_model.pickle', 'rb'))
 
     sleep_delay = 3
@@ -16,17 +18,11 @@ def test(url):
 
 
 for i in range(1,21):
-    times = []
-
-    if(i % 2 == 0):
-        print('Predict 0: ')
-        url = 'http://localhost:5000/{}/{}/page?id='.format('safe', i)
-    else:
+    if (i %2==0):
         print('Predict 1: ')
-        url = 'http://localhost:5000/{}/{}/page?id='.format('vulnerable', i)
-    start = timeit.default_timer()
+        url = 'http://localhost:5000/vulnerable/{}/page?id='.format(i)
+    else:
+        print('Predict 0: ')
+        url = 'http://localhost:5000/safe/{}/page?id='.format(i)
+        
     print(test(url))
-    times.append(timeit.default_timer() - start)
-
-
-print(np.mean(times))

@@ -36,8 +36,8 @@ Here is are some of the performance metrics of each algorithm (approach):
 
 | Approach | Algorithm| FPR | Average Running Time (Seconds) | FNR |
 |---|---|---|---|---|
-| Classification | SVC | 0.0002 | 10 | 0.07 |
-| Custom Algorithm | time-based| 0.0000  | 7.4 | 0.0934 |
+| Classification | SVC | 0.0002 | 7.75 | 0.02 |
+| Custom Algorithm | time-based| 0.0000  | 6.2 | 0.0934 |
 
 *As you can clearly see, the SVC algorithm did not meet the speed and accuracy criteria stated above. On the other hand, the Custom Algorithm can be used to test a url within a few seconds with a FPR of less than 0.0001 or (one in ten thousand)*
 
