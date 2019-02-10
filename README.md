@@ -28,7 +28,7 @@ After defining the problem at hand, two different approaches were used to try to
 
 ## Results and Analysis
 
-Using an out-of-the-box classifier was the first method I used to approach the problem. After testing different classifiers and tweaking their parameters, I decided to use a Support Vector Classifier (SVC). After training the SVC classifier with the RTTs of thousands of urls with different sleep delays, I noticed that in order to make the FPR less than 0.0001, I'd  need to continue to increase the sleep delay, which would make the algorithm take much longer than 10 seconds to test each url.
+Using an out-of-the-box classifier was the first method I used to approach the problem. After testing different classifiers and tweaking their parameters, I decided to use a Support Vector Classifier (SVC). After training the SVC classifier with the RTTs of thousands of urls with different sleep delays, I noticed that in order to make the FPR less than 0.0001, I'd  need to continue to increase the sleep delay, which would make the algorithm take much longer than 10 seconds to test each url. I also encountered other issues with the training data I collected, which I explain in more detail in the jupyter notebook.
 
 After doing more research and data exploration, I decided to build a custom time-based algorithm that would give me more control over the parameters that would allow me to increase the speed of the test and minimize the FPR.
 
