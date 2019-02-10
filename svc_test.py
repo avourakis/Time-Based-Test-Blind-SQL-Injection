@@ -6,7 +6,7 @@ import timeit
 def test(url):
     
     # Load the trained SVC Model
-    svc_model = pickle.load(open('/Users/andres/Documents/Data Science/Detectify Data Science Challenge/svc_final_model.pickle', 'rb'))
+    svc_model = pickle.load(open('svc_final_model.pickle', 'rb'))
 
     sleep_delay = 2 # The same sleep delay used during the training of the model
     start = timeit.default_timer()
