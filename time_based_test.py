@@ -3,28 +3,30 @@ import asyncio
 import timeit
 from aiohttp import ClientSession
 from aiohttp import TCPConnector
-import re
 
 
 async def get_url_rtt(url, session, i):
     '''
-    Collects the request RTT of the "url" passed above and returns it along with and id "i"
+    Makes http request to the "url" and returns the RTT along with an id "i"
     '''
 
-    get_url_rtt.start_time[url+str(i)] = timeit.default_timer()
+    get_url_rtt.start_time[url+str(i)] = timeit.default_timer()  # Concatenating "url" and "i" in order to make sure the key is unique
+
     async with session.get(url) as response:
-        resp = await response.read()
+        _ = await response.read()
         rtt = timeit.default_timer() - get_url_rtt.start_time[url+str(i)]
+
         return (i, rtt)
+
 
 def analyze_rtts(rtts, diff):
     '''
-    Analyses two sets of rtts and decides whether the difference shows a vulnerability or not
-    Using dummy way of analyzing the rtts. will be replaced with more sophisticated method
+    Analyses two sets of rtts and decides whether the difference shows a vulnerability (label 1) or not (label 0)
     '''
 
     low_delay = []
     high_delay = []
+
     for rtt in rtts:
         if rtt[0] % 2 == 0:
             high_delay.append(rtt[1])
@@ -36,6 +38,7 @@ def analyze_rtts(rtts, diff):
     # If the the high and low rtts differ by more than 
     return int(difference >= diff)
 
+
 async def scan_url(url, high, low, num_requests):
     '''
     Scans the "url" for "num_requests" times.
@@ -44,17 +47,18 @@ async def scan_url(url, high, low, num_requests):
     '''
 
     tasks = []
-    con = TCPConnector(ssl=False)
+    con = TCPConnector(ssl=False)  # In case of SSL type errors
     get_url_rtt.start_time = {}
+
     # Fetch all responses within one Client session, keep connection alive for all requests.
     async with ClientSession(connector=con) as session:
         for i in range(1, num_requests + 1):
 
-            if i % 2 == 0: # Even Numberber gets Assigned High Delay
+            if i % 2 == 0:  # Even Number gets assigned High Delay
                 task = asyncio.ensure_future(get_url_rtt(url + 'SLEEP({})'.format(high), session, i))
                 tasks.append(task)
 
-            else: # Odd Number gets Assigned Low Delay
+            else:  # Odd Number gets assigned Low Delay
                 task = asyncio.ensure_future(get_url_rtt(url + 'SLEEP({})'.format(low), session, i))
                 tasks.append(task)
 
@@ -66,7 +70,7 @@ async def scan_url(url, high, low, num_requests):
 
 def test(url, high = 0.8, low= 0.03, num_requests = 24, diff = 3):
     '''
-    Returns whether a url is vulnerable (1) or safe (0)
+    Returns whether a url is vulnerable (label 1) or safe (label 0)
     '''
 
     # Scan URL in async
