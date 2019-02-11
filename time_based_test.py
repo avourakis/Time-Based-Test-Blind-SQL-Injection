@@ -7,7 +7,7 @@ from aiohttp import TCPConnector
 
 async def get_url_rtt(url, session, i):
     '''
-    Makes http request to the "url" and returns the RTT along with an id "i"
+    Makes http request to the "url" and returns the RTT along with the url and an id "i"
     '''
 
     get_url_rtt.start_time[url+str(i)] = timeit.default_timer()  # Concatenating "url" and "i" in order to make sure the key is unique
@@ -16,7 +16,7 @@ async def get_url_rtt(url, session, i):
         _ = await response.read()
         rtt = timeit.default_timer() - get_url_rtt.start_time[url+str(i)]
 
-        return (i, rtt)
+        return (i, rtt, url)
 
 
 def analyze_rtts(rtts, diff):
@@ -39,7 +39,7 @@ def analyze_rtts(rtts, diff):
     return int(difference >= diff)
 
 
-async def scan_url(url, high, low, num_requests):
+async def scan_url(url, high, low, num_requests, sem = None):
     '''
     Scans the "url" for "num_requests" times.
     Half of those requests have a sleep command with a "high" sleep delay
@@ -49,6 +49,8 @@ async def scan_url(url, high, low, num_requests):
     tasks = []
     con = TCPConnector(ssl=False)  # In case of SSL type errors
     get_url_rtt.start_time = {}
+    
+    if sem != None: await sem.acquire()  # In case semaphores are used to call this function
 
     # Fetch all responses within one Client session, keep connection alive for all requests.
     async with ClientSession(connector=con) as session:
@@ -64,6 +66,8 @@ async def scan_url(url, high, low, num_requests):
 
         # All RTTs from responses are in this variable
         responses = await asyncio.gather(*tasks)
+
+    if sem != None: sem.release() 
 
     return responses
 

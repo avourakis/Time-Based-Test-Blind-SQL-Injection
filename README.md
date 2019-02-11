@@ -28,7 +28,7 @@ After defining the problem at hand, two different approaches were used to try to
 
 ## Results and Analysis
 
-Using an out-of-the-box classifier was the first method I used to approach the problem. After testing different classifiers and tweaking their parameters, I decided to use a Support Vector Classifier (SVC). After training the SVC classifier with the RTTs of thousands of urls with different sleep delays, I noticed that in order to make the FPR less than 0.0001, I'd  need to continue to increase the sleep delay, which would make the algorithm take much longer than 10 seconds to test each url. I also encountered other issues with the training data I collected, which I explain in more detail in the jupyter notebook.
+Using an out-of-the-box classifier was the first method I used to approach the problem. After testing different classifiers and tweaking their parameters, I decided to use a Support Vector Classifier (SVC). After training the SVC with the RTTs of thousands of urls with different sleep delays, I noticed that in order to achieve a FPR of less than 0.0001, I'd need to continue to increase the sleep delay, which would make the algorithm take much longer than 10 seconds to test each url. I also encountered other issues with the training data I collected, which I explain in more detail in the appropriate jupyter notebook.
 
 After doing more research and data exploration, I decided to build a custom time-based algorithm that would give me more control over the parameters that would allow me to increase the speed of the test and minimize the FPR.
 
@@ -43,10 +43,10 @@ Here are some of the performance metrics I collected for each approach:
 
 ## Testing URLs
 
-#### *Here is an example of how to test a URL using the custom time-based algorithm. The code can be found inside `time_based_test.py`*
+#### Here is an example of how to test a single URL using the custom time-based algorithm. The code can be found inside `time_based_test.py`
 
 ```shell
-$ python
+$ python3
 ```
 
 ```python
@@ -57,8 +57,11 @@ $ python
 1
 ```
 
-*The same can be done to test a url using the SVC algorithm. The code can be found inside `svc_test.py`*
+*Requirements: numpy 1.16.0 and aiohttp 3.54*
 
-<!--
-Other code that helped me collect data and test c
--->
+
+
+The same can be done to test a url using the SVC algorithm. The code can be found inside `Other/svc_test.py`
+
+Code used to collect training data and test predictions (as well as some extra data collected) can be found inside the `Other` folder.
+
