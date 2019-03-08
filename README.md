@@ -1,7 +1,7 @@
 # Time-based test for Blind SQL injection
 
 
-## Interpretation: 
+## Goal: 
 
 My goal was to write a time-based algorithm to identify whether a url is "vulnerable" or "safe" to a blind SQL injection and optimize it for speed and specificity. This is how the optimization will be approached:
 
