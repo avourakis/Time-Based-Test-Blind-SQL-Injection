@@ -1,4 +1,4 @@
-# Detectify Data Scientist Challenge
+# Time-based test for Blind SQL injection
 
 
 ## Interpretation: 
